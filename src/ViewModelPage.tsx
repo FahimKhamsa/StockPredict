@@ -3,6 +3,7 @@ import { ArrowLeft, Code, Server, Database, Cpu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/layout/Navbar";
+import CodeBlock from "./components/ui/CodeBlock";
 
 const ViewModelPage: React.FC = () => {
   return (
@@ -127,17 +128,14 @@ const ViewModelPage: React.FC = () => {
                     Data Preprocessing and Feature Engineering
                   </h2>
 
-                  <div className="bg-gray-900 p-4 rounded-lg overflow-auto">
-                    <pre className="text-green-400 text-sm">
-                      <code>
-                        {`for window in [5, 10, 20, 50]:
+                  <CodeBlock
+                    code={`for window in [5, 10, 20, 50]:
     for col in ['open', 'high', 'low', 'close', 'volume']:
         if col in df.columns:
             df[f'{col}_ma{window}'] = df[col].rolling(window=window).mean()
             df[f'{col}_ma{window}_diff'] = df[col] - df[f'{col}_ma{window}']`}
-                      </code>
-                    </pre>
-                  </div>
+                    language="python"
+                  />
 
                   <p className="text-gray-600 dark:text-gray-400 text-sm mt-4">
                     Feature engineering code that calculates moving averages and
@@ -152,10 +150,8 @@ const ViewModelPage: React.FC = () => {
                     Model Training and Architecture
                   </h2>
 
-                  <div className="bg-gray-900 p-4 rounded-lg overflow-auto">
-                    <pre className="text-blue-400 text-sm">
-                      <code>
-                        {`model = Sequential([
+                  <CodeBlock
+                    code={`model = Sequential([
     Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(30, feature_count)),
     BatchNormalization(),
     MaxPooling1D(pool_size=2),
@@ -166,9 +162,8 @@ const ViewModelPage: React.FC = () => {
     Dense(16, activation='relu'),
     Dense(1, activation='sigmoid')
 ])`}
-                      </code>
-                    </pre>
-                  </div>
+                    language="python"
+                  />
 
                   <p className="text-gray-600 dark:text-gray-400 text-sm mt-4">
                     Keras implementation of our hybrid CNN-LSTM model
